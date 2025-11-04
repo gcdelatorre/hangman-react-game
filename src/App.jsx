@@ -12,18 +12,32 @@ export default function AssemblyEndgame() {
     const [currentWord, setCurrentWord] = useState("react")
     const [guessedLetters, setGuessedLetters] = useState([])
 
+    // Derived values
+    const wrongGuessCount = 
+        guessedLetters.filter(letter => !currentWord.includes(letter)).length
+    const isGameWon = 
+        currentWord.split("").every(letter => guessedLetters.includes(letter))
+    const isGameLost = wrongGuessCount >= languages.length - 1
+    const isGameOver = isGameWon || isGameLost
+
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-    const languageElements = languages.map(language => {
-      const styles = {
-        color: language.color,
-        backgroundColor: language.backgroundColor,
-      }
-      return <LanguageElements 
-        style={styles}
-        name={language.name}
-        key={nanoid()}
-        />
+    const languageElements = languages.map((lang, index) => {
+        const isLanguageLost = index < wrongGuessCount
+        const styles = {
+            backgroundColor: lang.backgroundColor,
+            color: lang.color
+        }
+        const className = clsx("chip", isLanguageLost && "lost")
+        return (
+            <span
+                className={className}
+                style={styles}
+                key={lang.name}
+            >
+                {lang.name}
+            </span>
+        )
     })
 
     function addGuessedLetter(letter) {
@@ -75,6 +89,8 @@ export default function AssemblyEndgame() {
                 {keyboardElements}
             </section>
             
+            {isGameOver && <button className="new-game">New Game</button>}
+
         </main>
     )
 }
