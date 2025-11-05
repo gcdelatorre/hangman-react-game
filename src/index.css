@@ -52,9 +52,11 @@ section.game-status {
     justify-content: center;
     color: #F9F4DA;
     border-radius: 4px;
-    margin-block: 30px;
     padding: 10px;
     min-width: 350px;
+    min-height: 70px;
+    max-height: 70px;
+    margin-block: 30px;
 }
 
 section.game-status > h2 {
