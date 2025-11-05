@@ -3,14 +3,13 @@ import { languages } from "./datas/language"
 import LoseStatus from "./components/LoseStatus"
 import WinStatus from "./components/WinStatus"
 import Header from "./components/Header"
-import { nanoid } from "nanoid"
-import LanguageElements from "./components/LanguagesElements"
 import clsx from "clsx"
 import WrongAnswerStatus from "./components/WrongAnswerStatus"
+import { getRandomWord } from "./datas/utils"
 
 export default function AssemblyEndgame() {
 
-    const [currentWord, setCurrentWord] = useState("react")
+    const [currentWord, setCurrentWord] = useState(getRandomWord())
     const [guessedLetters, setGuessedLetters] = useState([])
 
     // Derived values
