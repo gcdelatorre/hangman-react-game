@@ -6,6 +6,7 @@ import Header from "./components/Header"
 import { nanoid } from "nanoid"
 import LanguageElements from "./components/LanguagesElements"
 import clsx from "clsx"
+import WrongAnswerStatus from "./components/WrongAnswerStatus"
 
 export default function AssemblyEndgame() {
 
@@ -19,6 +20,9 @@ export default function AssemblyEndgame() {
         currentWord.split("").every(letter => guessedLetters.includes(letter))
     const isGameLost = wrongGuessCount >= languages.length - 1
     const isGameOver = isGameWon || isGameLost
+
+    const lastGuessedLetter = guessedLetters[guessedLetters.length - 1]
+    const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
 
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
@@ -69,12 +73,27 @@ export default function AssemblyEndgame() {
         </button>)
     })
 
+    function handleGameStatus () {
+        if (isGameWon) {
+            return <WinStatus />
+        }
+        if (isGameLost) {
+            return <LoseStatus />
+        } 
+        if (!isGameOver && isLastGuessIncorrect) {
+            return <WrongAnswerStatus wrongGuessCount={wrongGuessCount}/>
+        }
+        return null
+    }
+
     return (
         <main>
 
             <Header />
             
-            <WinStatus /> {/*just conditional render if win or lose */}
+            <section className="game-status">
+                {handleGameStatus()}
+            </section>
 
             <section>
               <div className="languages-container">
