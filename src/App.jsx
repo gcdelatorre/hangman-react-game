@@ -9,7 +9,7 @@ import { getRandomWord } from "./datas/utils"
 
 export default function AssemblyEndgame() {
 
-    const [currentWord, setCurrentWord] = useState(getRandomWord())
+    const [currentWord, setCurrentWord] = useState(() => getRandomWord())
     const [guessedLetters, setGuessedLetters] = useState([])
 
     // Derived values
@@ -51,9 +51,16 @@ export default function AssemblyEndgame() {
         )
     }
 
-    const letterElements = currentWord.split("").map((letter, index) => (
-        <span key={index}>{guessedLetters.includes(letter) ? letter.toUpperCase() : ""}</span>
-    ))
+    const letterElements = currentWord.split("").map((letter, index) => {
+        return (
+            <span 
+                key={index} 
+                style={isGameOver && !guessedLetters.includes(letter) ? { color: "#EC5D49" } : {}}
+            >
+                {guessedLetters.includes(letter) ? letter.toUpperCase() : isGameOver ? letter.toUpperCase() : ""}
+            </span>
+        )
+    })
 
     const keyboardElements = alphabet.split("").map(letter => {
         const isGuessed = guessedLetters.includes(letter)
@@ -86,6 +93,11 @@ export default function AssemblyEndgame() {
         return null
     }
 
+    function handleNewGame () {
+        setCurrentWord(() => getRandomWord())
+        setGuessedLetters([])
+    }
+
     return (
         <main>
 
@@ -108,7 +120,7 @@ export default function AssemblyEndgame() {
                 {keyboardElements}
             </section>
             
-            {isGameOver && <button className="new-game">New Game</button>}
+            {isGameOver && <button onClick={handleNewGame} className="new-game">New Game</button>}
 
         </main>
     )
