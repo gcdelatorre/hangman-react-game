@@ -6,6 +6,7 @@ import Header from "./components/Header"
 import clsx from "clsx"
 import WrongAnswerStatus from "./components/WrongAnswerStatus"
 import { getRandomWord } from "./datas/utils"
+import Confetti from "react-confetti"
 
 export default function AssemblyEndgame() {
 
@@ -100,7 +101,7 @@ export default function AssemblyEndgame() {
 
     return (
         <main>
-
+            {isGameWon && <Confetti />}
             <Header />
             
             <section className="game-status">
