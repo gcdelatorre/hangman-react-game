@@ -11,7 +11,8 @@ export const statusStyles = {
         backgroundColor:"#7A5EA7",
         borderWidth:"1px",
         borderColor:"white",
-        borderStyle:"dashed"
+        borderStyle:"dashed",
+        fontStyle:"italic"
     }
 
 }
