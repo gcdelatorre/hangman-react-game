@@ -1,16 +1,42 @@
-# React + Vite
+👨‍💻 About This Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Assembly Endgame is a Hangman-style word guessing game built with React.
+I made this project during my first week learning React to practice hooks, state management, and component interactions. 🚀
 
-Currently, two official plugins are available:
+It’s a fun way to see how dynamic UIs update in real-time and how game logic can be handled with React.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🎮 How to Play
 
-## React Compiler
+A random word is selected at the start of the game.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Click letters on the on-screen keyboard to guess them.
 
-## Expanding the ESLint configuration
+Correct guesses reveal letters in the word.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Wrong guesses cost a “language life.”
+
+Win by guessing the word before running out of lives.
+
+Click New Game to start over.
+
+🚀 Features
+
+🎯 Interactive letter keyboard
+
+💀 Lives system shown as “languages”
+
+🎉 Confetti animation on win
+
+🔄 Replay anytime with New Game
+
+🖥️ Real-time letter reveal and wrong guess tracking
+
+🧠 Built With
+
+React (useState, useEffect hooks)
+
+Vite (fast dev environment)
+
+CSS / clsx for styling and dynamic classes
+
+react-confetti for win effects
